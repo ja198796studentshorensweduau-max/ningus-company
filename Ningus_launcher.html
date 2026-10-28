@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ningus Company</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #0d1020; color: #e8eaf6; font-family: "Segoe UI", system-ui, sans-serif; }
+  #app { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; background: #fff; display: none; }
+  #msg { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; text-align: center; }
+  #msg.hide { display: none; }
+  #text { font-size: 14px; max-width: 480px; word-break: break-word; }
+  #text.err { color: #ff9a9a; }
+  button { font: inherit; font-size: 13px; color: #fff; border: 0; border-radius: 6px; padding: 8px 18px; cursor: pointer; background: #5b6cff; display: none; }
+</style>
+</head>
+<body>
+<div id="msg"><div id="text">Loading Ningus Company...</div><button id="retry" onclick="load()">Retry</button></div>
+<iframe id="app" allow="fullscreen; autoplay; clipboard-write"></iframe>
+
+<script>
+// ------------- Config -------------
+var SOURCE = 'https://github.com/ja198796studentshorensweduau-max/ningus-company/blob/main/index.html';
+// ----------------------------------
+
+var CACHE_KEY = 'ningus-company-index';
+var frame = document.getElementById('app');
+var msg = document.getElementById('msg'), text = document.getElementById('text'), retry = document.getElementById('retry');
+
+// github.com/u/r/blob/branch/path -> raw.githubusercontent.com/u/r/branch/path
+function toRaw(u) {
+  return u.replace(/^https:\/\/github\.com\/([^\/]+)\/([^\/]+)\/blob\/(.+)$/, 'https://raw.githubusercontent.com/$1/$2/$3');
+}
+
+function status(t, isErr, showRetry) {
+  msg.className = '';
+  text.className = isErr ? 'err' : '';
+  text.textContent = t;
+  retry.style.display = showRetry ? 'inline-block' : 'none';
+  frame.style.display = 'none';
+}
+
+function show(html, rawUrl) {
+  // base tag lets relative links (images, css, js) in the repo resolve correctly
+  var base = '<base href="' + rawUrl.replace(/[^\/]*$/, '') + '">';
+  html = /<head[^>]*>/i.test(html) ? html.replace(/<head[^>]*>/i, function (m) { return m + base; }) : base + html;
+  frame.srcdoc = html;
+  frame.style.display = 'block';
+  msg.className = 'hide';
+}
+
+function load() {
+  var raw = toRaw(SOURCE);
+  status('Loading Ningus Company...');
+  fetch(raw + '?t=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status + (r.status === 404 ? ' (file not found: is the repo private, or the path/branch wrong?)' : ''));
+      return r.text();
+    })
+    .then(function (html) {
+      if (!html.trim()) throw new Error('The file on GitHub is empty.');
+      try { localStorage.setItem(CACHE_KEY, html); } catch (e) {}
+      show(html, raw);
+    })
+    .catch(function (e) {
+      var cached = null;
+      try { cached = localStorage.getItem(CACHE_KEY); } catch (x) {}
+      if (cached) show(cached, raw);
+      else status('Could not load from GitHub: ' + e.message, true, true);
+    });
+}
+
+load();
+</script>
+</body>
+</html>
