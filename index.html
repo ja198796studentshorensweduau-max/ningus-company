@@ -772,22 +772,21 @@ textarea{font:20px/1.1 var(--fb);color:var(--p0);background:var(--n0);border:2px
 #ncmute svg{width:20px;height:20px;image-rendering:pixelated}
 #app.on #hud{right:52px}
 @media (max-width:640px){#app.on #hud{right:48px}}
-.ver{font:8px/1 var(--fd);color:var(--g0);letter-spacing:2px;margin-top:6px;text-align:center}
 </style></head><body>
 <button id="ncmute" type="button" aria-label="Unmute sound" title="Sound"></button>
 <div id="app"><div id="left"><div id="arena"><svg id="arcs"><defs><marker id="ahr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" style="fill:var(--r0)"/></marker><marker id="ahg" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" style="fill:var(--h0)"/></marker></defs><g id="arcg"></g></svg><canvas id="fxc"></canvas><div id="ord"></div><div id="rd"></div><div id="seasonalBossHud" class="win" aria-live="polite"><div class="sbh-top"><strong id="sbh-name">SEASONAL BOSS</strong><strong id="sbh-hp">0 / 0 HP</strong></div><div class="sbh-track"><div id="sbh-fill"></div></div></div><div id="hud"><button id="pb" class="hb">Pause</button><button id="mm" class="hb">Menu</button></div><div id="einfo" class="win"></div><div id="hand" aria-hidden="true"></div><div id="pz" class="ov"><div class="win ovw"><div class="plate">PAUSED</div><div class="ovt">Paused</div><button id="pr" class="btn pri">Resume</button><button id="pm" class="btn">Return to menu</button></div></div><div id="end"><div class="win ovw"><div id="et"></div><div id="rew"></div><div class="ovb"><button id="rs" class="btn pri">Play again</button><button id="mb" class="btn">Menu</button></div></div></div></div></div><div id="cmd"><div id="party" class="win"></div><div id="gui" class="win"><div id="gcm"></div><div id="gfoot"><div id="qolbar"></div><div id="gact"></div></div></div><div id="logw" class="win"><div class="plate">LOG</div><div id="log"></div></div></div></div>
-<div id=menu class="scr on"><div class=mtop><h1 class=logo><span>NINGUS</span><span>COMPANY</span></h1><div class=tag>A TURN-BASED PIXEL BATTLER</div><div class=ver>v1.1</div></div><div id=mwin class="win"><div class=plate>MENU</div><div id=mlist><button class=big id=b1>Start battle</button><button class=big id=b2>Select team</button><button class=big id=b3>Character info</button><button class=big id=b4>Multiplayer</button><button class=big id=b6>Gatcha</button><button class=big id=bevents>Seasonal Events</button><button class=big id=b5>Log in / Sign up</button></div><div id=whoami class=mut></div></div><div id=parade aria-hidden=true><div class=ptrack></div></div></div>
+<div id=menu class="scr on"><div class=mtop><h1 class=logo><span>NINGUS</span><span>COMPANY</span></h1><div class=tag>A TURN-BASED PIXEL BATTLER</div></div><div id=mwin class="win"><div class=plate>MENU</div><div id=mlist><button class=big id=b1>Start battle</button><button class=big id=b2>Select team</button><button class=big id=b3>Character info</button><button class=big id=b4>Multiplayer</button><button class=big id=b6>Gacha</button><button class=big id=bevents>Seasonal Events</button><button class=big id=b5>Log in / Sign up</button></div><div id=whoami class=mut></div></div><div id=parade aria-hidden=true><div class=ptrack></div></div></div>
 <div id=select class=scr><div class=shead><button class="big back bk">Back</button><h1>Select team</h1></div><div class="win swin"><div class=plate>PARTY</div><div id=sh class=mut></div><div id=slots class=slots></div></div><div class="win gwin"><div class=plate>ROSTER</div><div id=sgrid class=grid></div></div></div>
 <div id=info class=scr><div class=shead><button class="big back bk">Back</button><h1>Character info</h1></div><div class=ilay><div id=ipanel class="ipanel win"></div><div class="win gwin"><div class=plate>ROSTER</div><div id=igrid class=grid></div></div></div></div>
-<div id=mp class=scr><div class=shead><button class="big bk" id=mback>Back</button><h1>Multiplayer</h1></div><div class="win fwin"><div class=plate>NEW LOBBY</div><div id=mpmsg class=mut></div><div class=fld><input id=pname maxlength=16 placeholder="Your name"><select id=mmode><option value=1v1>1v1 (5 characters each)</option><option value=2v2>2v2 (2 characters per player)</option></select><button class=small id=mcreate>Create lobby</button></div></div><div class="win fwin"><div class=plate>OPEN LOBBIES</div><div id=llist></div></div></div>
-<div id=lob class=scr><div class=shead><h1 id=lt></h1></div><div id=lmsg class=mut></div><div id=lreq></div><div id=lteams class=lteams></div><div id=lsel class="win gwin" style="display:none"><div class=plate>YOUR PICKS</div><div id=lslots class=slots></div><div id=lgrid class=grid></div></div><div class="fld lbar"><button class=small id=lready>Ready</button><button class=small id=lstart>Start battle</button><button class=small id=lleave>Leave lobby</button></div></div>
+<div id=mp class=scr><div class=shead><button class="big bk" id=mback>Back</button><h1>Multiplayer</h1></div><div class="win fwin"><div class=plate>NEW LOBBY</div><div id=mpmsg class=mut></div><h3 class=mut>Gamemodes</h3><div class=fld><select id=mgm></select></div><div id=mgd class=mut></div><div class=fld><input id=pname maxlength=16 placeholder="Your name"><select id=mmode><option value=1v1>1v1 (5 characters each)</option><option value=2v2>2v2 (2 characters per player)</option></select><button class=small id=mcreate>Create lobby</button></div></div><div class="win fwin"><div class=plate>OPEN LOBBIES</div><div id=llist></div></div></div>
+<div id=lob class=scr><div class=shead><h1 id=lt></h1></div><div id=lmsg class=mut></div><div id=lgm class=mut></div><div id=lreq></div><div id=lteams class=lteams></div><div id=lsel class="win gwin" style="display:none"><div class=plate>YOUR PICKS</div><div id=lslots class=slots></div><div id=lgrid class=grid></div></div><div class="fld lbar"><button class=small id=lready>Ready</button><button class=small id=lstart>Start battle</button><button class=small id=lleave>Leave lobby</button></div></div>
 <div id=acct class=scr><div class=shead><button class="big bk" id=aback>Back</button><h1>Account</h1></div><div id=amsg class=mut></div>
 <div id=alogin class="fld win fwin"><div class=plate>LOG IN</div><input id=au maxlength=16 placeholder="Username (sign-up only)" autocomplete=username><input id=ae type=email placeholder="Email address" autocomplete=email><input id=ap type=password placeholder="Password" autocomplete=current-password><div class=abtn><button class=small id=ali>Log in</button><button class=small id=asu>Sign up</button></div><div class=mut>Log in with your email and password. Username is chosen when signing up.</div></div>
 <div id=aprof style="display:none"></div>
 <div class="fld abar"><button class=small id=alo style="display:none">Log out</button><button class=small id=aadm style="display:none">Admin panel</button></div></div>
 <div id=adm class=scr><div class=shead><button class="big bk" id=admback>Back</button><h1>Admin panel</h1></div><div class="win fwin"><div class=plate>SEASONAL EVENT MANAGER</div><p class=mut>Create events using an existing character or hardcoded boss. Bosses are not public unless an event is published.</p><form id=eventForm><input id=eventEditId type=hidden><div class=event-grid><div class=event-field><label for=eventName>Event name</label><input id=eventName maxlength=80 required placeholder="The Awakening"></div><div class=event-field><label for=eventBoss>Boss character</label><select id=eventBoss required></select></div><div class=event-field><label for=eventHP>Maximum boss HP</label><input id=eventHP type=number min=1 max=100000000 required value=1000></div><div class=event-field><label for=eventStart>Start time</label><input id=eventStart type=datetime-local required></div><div class=event-field><label for=eventEnd>End time</label><input id=eventEnd type=datetime-local required></div><div class=event-field><label for=eventReward>Optional unlock reward</label><select id=eventReward><option value="">No character reward</option></select></div></div><div class=event-field style="margin-top:10px"><label for=eventDesc>Description</label><textarea id=eventDesc maxlength=500 placeholder="A new threat has appeared…"></textarea></div><div class=fld style="margin-top:10px"><button class=small id=eventSave type=submit>Save draft</button><button class=small id=eventCancel type=button>Clear form</button><button class=small id=eventResetAll type=button>Reset all attempts</button></div></form><div id=adminEventsList></div></div><div class="win fwin"><div class=plate>ACCOUNTS</div><div id=admmsg class=mut></div><div class=fld><button class=small id=admref>Refresh</button><button class=small id=admlob>Purge lobbies</button></div><div id=admlist></div></div></div>
 <div id=events class=scr><div class=shead><button class="big bk" id=eventsback>Back</button><h1>Seasonal Events</h1></div><div class="win fwin"><div class=plate>EVENTS</div><div class=mut id=eventsmsg>Loading events…</div><div id=eventslist></div></div></div>
-<div id=gac class=scr><div class=shead><button class="big bk" id=gback>Back</button><h1>Gatcha</h1></div><div class="win fwin gshop"><div class=plate>SUMMON</div><div id=gbal class=mut></div><div id=gmsg class=mut></div><div class=fld><button class=small id=g1>Pull x1</button><button class=small id=g5>Pull x5</button></div></div><div class="win gwin"><div class=plate>POOL</div><div id=gpool class=grid></div></div><div class="win fwin"><div class=plate>LAST RESULTS</div><div id=gres></div></div></div>
+<div id=gac class=scr><div class=shead><button class="big bk" id=gback>Back</button><h1>Gacha</h1></div><div class="win fwin gshop"><div class=plate>SUMMON</div><div id=gbal class=mut></div><div id=gmsg class=mut></div><div class=fld><button class=small id=g1>Pull x1</button><button class=small id=g5>Pull x5</button></div></div><div class="win gwin"><div class=plate>POOL</div><div id=gpool class=grid></div></div><div class="win fwin"><div class=plate>LAST RESULTS</div><div id=gres></div></div></div>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
 import {getDatabase,ref,set,update,remove,onValue} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js";
@@ -831,7 +830,7 @@ const on=(e,f)=>{(HK[e]=HK[e]||[]).push(f)};
 const emit=(e,...a)=>{for(const f of HK[e]||[])try{f(...a)}catch(x){console.error(x)}};
 const emitA=async(e,...a)=>{for(const f of HK[e]||[])try{await f(...a)}catch(x){console.error(x)}};
 let $=s=>document.querySelector(s),sleep=async ms=>{const g=gen;await new Promise(r=>setTimeout(r,ms/CFG.speed));while(paused&&g===gen)await new Promise(r=>setTimeout(r,100));if(g!==gen)await new Promise(()=>{})},rnd=a=>a[Math.floor(Math.random()*a.length)];
-const ST={poison:['Poison','3 damage per stack at end of turn'],bleed:['Bleed','4 damage per stack when hit, then loses 1 stack'],shock:['Shock','5 damage and -1 Charge at end of turn'],regen:['Regeneration','Restores 8 HP at end of turn'],marked:['Marked','Takes 25% more damage from the one who marked'],vuln:['Vulnerability','Takes 25% more damage'],tracked:['Tracked','Talon deals 15% more damage to this target'],resolve:['Resolve','Reduces damage taken by 3% per stack; loses 1 stack each turn'],gl:['Graceful Light','Regenerates 5 HP at the start of next turn'],cf:['Counterfighter','Next attack deals 15% more damage'],weak:['Dampened','Deals 10% less damage'],ap:['Adaptive Protocol','Next zero-cost attack deals 25% more damage'],shielded:['Shielded','Negates the next hit'],stagger:['Stagger','Loses next action'],slow:['Slow','Acts last in the round'],rooted:['Rooted','Cannot move or dodge'],empowered:['Empowered','+20% outgoing damage'],surge:['Surge','+15% outgoing damage'],icpt:['Intercepted','Next single-target attack hits the protector instead'],guard:['Guard','+5% damage on next attack per stack'],mirror:['Mirror Aegis','Next hit is halved; attacker takes 50% of the damage prevented'],fort:['Fortified','Takes 25% less damage'],fear:['Feared','Deals 25% less damage; cannot use all-enemy moves'],blind:['Blind','40% chance to miss attacks'],confuse:['Confused','30% chance to target randomly'],evasion:['Evasion','50% chance to avoid the next single-target attack'],amp:['Amplified','Next move deals 25% more damage'],dmark:['Death\u2019s Appointment','Countdown to a 35 damage execution'],contagion:['Contagion','Spreads at 3 stacks'],blackout:['Blackout','No external Charge; loses extra Charge after spending 2+'],dim:['Dimmed','Deals 50% less damage'],taunted:['Distracted','Single-target attacks must target Echo']};
+const ST={poison:['Poison','2 damage per stack at end of turn'],bleed:['Bleed','4 damage per stack when hit, then loses 1 stack'],shock:['Shock','5 damage and -1 Charge at end of turn'],regen:['Regeneration','Restores 8 HP at end of turn'],marked:['Marked','Takes 25% more damage from the one who marked'],vuln:['Vulnerability','Takes 25% more damage'],tracked:['Tracked','Talon deals 15% more damage to this target'],resolve:['Resolve','Reduces damage taken by 3% per stack; loses 1 stack each turn'],gl:['Graceful Light','Regenerates 5 HP at the start of next turn'],cf:['Counterfighter','Next attack deals 15% more damage'],weak:['Dampened','Deals 10% less damage'],ap:['Adaptive Protocol','Next zero-cost attack deals 25% more damage'],shielded:['Shielded','Negates the next hit'],stagger:['Stagger','Loses next action'],slow:['Slow','Acts last in the round'],rooted:['Rooted','Cannot move or dodge'],empowered:['Empowered','+20% outgoing damage'],surge:['Surge','+15% outgoing damage'],icpt:['Intercepted','Next single-target attack hits the protector instead'],guard:['Guard','+5% damage on next attack per stack'],mirror:['Mirror Aegis','Next hit is halved; attacker takes 50% of the damage prevented'],fort:['Fortified','Takes 25% less damage'],fear:['Feared','Deals 25% less damage; cannot use all-enemy moves'],blind:['Blind','40% chance to miss attacks'],confuse:['Confused','30% chance to target randomly'],evasion:['Evasion','50% chance to avoid the next single-target attack'],amp:['Amplified','Next move deals 25% more damage'],dmark:['Death\u2019s Appointment','Countdown to a 35 damage execution'],contagion:['Contagion','Spreads at 3 stacks'],blackout:['Blackout','No external Charge; loses extra Charge after spending 2+'],dim:['Dimmed','Deals 50% less damage'],taunted:['Distracted','Single-target attacks must target Echo']};
 const NEG=['poison','bleed','shock','vuln','marked','stagger','slow','rooted','fear','blind','confuse','weak','taunted'];
 const M=(n,c,t,x,o={})=>({n,c,t,x,...o}),D=(n,r,hp,col,fr,mv)=>({n,r,hp,col,fr,mv});
 const P=[
@@ -845,7 +844,7 @@ D('Rook','Duelist',135,'#b5651d',1,[M('Riposte',0,'e','11 dmg',{d:11}),M('Parry 
 D('Axiom','Boss Killer',145,'#7a7f8c',1,[M('Calibration Strike',0,'e','12 dmg',{d:12}),M('Armour Breaker',2,'e','24 dmg, Vulnerability 1 turn',{d:24,st:[{k:'vuln',t:1}]}),M('Energy Conversion',3,'self','Empowered 2 turns',{st:[{k:'empowered',t:2}]}),M('Final Protocol',5,'e','65 dmg, +5 per extra Charge, spends all Charge',{d:65,all:1})]),
 D('Kira','Gunslinger',100,'#d9822b',0,[M('Quick Shot',0,'e','11 dmg',{d:11}),M('Double Tap',1,'e','2 hits of 9 dmg',{d:9,h:2}),M('Suppressive Fire',3,'r3','15 dmg to 3 random, 30% Slow',{d:15,st:[{k:'slow',p:.3}]}),M('Deadeye',4,'e','48 dmg',{d:48})]),
 D('Sylva','Zone Control',120,'#3f9f4f',0,[M('Thorn Shot',0,'e','10 dmg',{d:10}),M('Entanglement',2,'e','12 dmg, Rooted 1 turn',{d:12,st:[{k:'rooted'}]}),M('Bloom of Life',2,'ally','Heal 20 HP, Regeneration 2 turns',{heal:20,st:[{k:'regen',t:2}]}),M('Briarfield',4,'ae','15 dmg and 2 Bleed to all',{d:15,st:[{k:'bleed',n:2}]})]),
-D('Volt','Battery',110,'#e6d12c',0,[M('Static Jab',0,'e','8 dmg',{d:8}),M('Recharge',1,'ally','+1 Charge',{ch:1}),M('Overload Link',2,'r2a','2 random allies gain 1 Charge',{ch:1}),M('Grid Surge',4,'allies','All allies +1 Charge, +15% damage 1 turn',{ch:1,st:[{k:'surge',t:1}]})])];
+D('Volt','Battery',110,'#e6d12c',0,[M('Static Jab',0,'e','8 dmg',{d:8}),M('Recharge',2,'ally','+1 Charge',{ch:1}),M('Overload Link',2,'r2a','2 random allies gain 1 Charge',{ch:1}),M('Grid Surge',4,'allies','All allies +1 Charge, +15% damage 1 turn',{ch:1,st:[{k:'surge',t:1}]})])];
 
 const X=[
 D('Echo','Controller',95,'#b05fa8',0,[M('String Pierce',0,'e','9 dmg',{d:9}),M('Distract',1,'e','5 dmg; target must attack Echo next turn (single-target)',{d:5,st:[{k:'taunted',t:1}]}),M('Crippling Strings',3,'e','18 dmg, Slow 2 turns',{d:18,st:[{k:'slow',t:2}]}),M('Marionette Collapse',5,'e','35 dmg, Stagger, target loses 1 Charge',{d:35,drain:1,st:[{k:'stagger'}]})]),
@@ -885,7 +884,7 @@ let paused=false,gen=0;
 let units,order,idx,round,cur,pend,busy,over,logs,plans={},phase='',planQ=[],pi=0;let FX=[],ultSt={};
 function init(){gen++;paused=false;$('#pz').style.display='none';$('#pb').textContent='Pause';const A=$('#arena');A.querySelectorAll('.unit,.proj').forEach(e=>e.remove());$('#end').style.display='none';$('#rew').textContent='';
  units=[];order=[];idx=0;round=0;cur=null;pend=null;busy=false;over=false;logs=[];
- [teamP,teamE].forEach((T,side)=>T.forEach((d,i)=>{const u={...d,side,wisps:[],void:0,max:d.hp,hp:d.hp,ch:0,st:{},dead:false,wasHit:false};
+ [teamP,teamE].forEach((T,side)=>T.forEach((d,i)=>{const u={...d,side,wisps:[],void:0,max:gmHp(d.hp),hp:gmHp(d.hp),ch:0,st:{},dead:false,wasHit:false};
   const el=document.createElement('div');el.className='unit'+(side?' e':'');
   el.style.left=((side?(d.fr?66:84):(d.fr?34:16))+(i%2?3:-3))+'%';el.style.top=(52+i*(T.length>1?34/(T.length-1):0))+'%';
   el.innerHTML=`<div class=mk></div><div class=sdw></div>${bodyHtml(d)}<i class=hpb><b></b></i><div class=pips></div><div class=nm>${d.n}</div><div class=sts></div>`;
@@ -1175,7 +1174,7 @@ async function doLogout(){ncCkClear();const A=window.FBAuth;try{if(A)await A.sig
 function drawAcct(){const p=$('#aprof');$('#alogin').style.display=ME?'none':'';$('#alo').style.display=ME?'':'none';$('#aadm').style.display=ME&&ME.role==='admin'?'':'none';p.style.display=ME?'block':'none';if(!ME)return;
  const s=ME.stats,G=s.g||0,W=s.w||0,L=s.l||0,box=(a,b)=>`<div class=sb><b>${a}</b>${b}</div>`;
  const cs=Object.entries(s.chars||{}).filter(([n])=>byN(n)).sort((x,y)=>(y[1].g||0)-(x[1].g||0)).slice(0,6);
- p.innerHTML=`<h2><span id=un></span>${ME.role==='admin'?' <span style="color:var(--acc)">\u2605 ADMIN</span>':''}</h2><div class=sg>${box(G,'Games')}${box(W,'Wins')}${box(L,'Losses')}${box(G?Math.round(100*W/G)+'%':'-','Win rate')}${box(s.streak||0,'Win streak')}${box(s.best||0,'Best streak')}${box(s.sp||0,'Single-player')}${box(s.m1||0,'1v1 online')}${box(s.m2||0,'2v2 online')}${box(s.ult||0,'Ultimates used')}${box(s.kills||0,'Defeats dealt')}${box(s.dmg||0,'Damage dealt')}${box(ME.coins||0,'Coins')}${box(ME.rolls||0,'Free rolls')}${box(GACHA.filter(owns).length+'/'+GACHA.length,'Gatcha characters')}</div><h3>Most-used characters</h3>`+(cs.length?cs.map(([n,v])=>{const d=byN(n);return `<div class=cr><i style="${ico(d)}"></i><b>${n}</b><span class=mut>${v.g} games \u00b7 ${v.w||0} wins \u00b7 ${v.g?Math.round(100*(v.w||0)/v.g):0}%</span></div>`}).join(''):'<p class=mut>Play a battle to start your stats.</p>');
+ p.innerHTML=`<h2><span id=un></span>${ME.role==='admin'?' <span style="color:var(--acc)">\u2605 ADMIN</span>':''}</h2><div class=sg>${box(G,'Games')}${box(W,'Wins')}${box(L,'Losses')}${box(G?Math.round(100*W/G)+'%':'-','Win rate')}${box(s.streak||0,'Win streak')}${box(s.best||0,'Best streak')}${box(s.sp||0,'Single-player')}${box(s.m1||0,'1v1 online')}${box(s.m2||0,'2v2 online')}${box(s.ult||0,'Ultimates used')}${box(s.kills||0,'Defeats dealt')}${box(s.dmg||0,'Damage dealt')}${box(ME.coins||0,'Coins')}${box(ME.rolls||0,'Free rolls')}${box(GACHA.filter(owns).length+'/'+GACHA.length,'Gacha characters')}</div><h3>Most-used characters</h3>`+(cs.length?cs.map(([n,v])=>{const d=byN(n);return `<div class=cr><i style="${ico(d)}"></i><b>${n}</b><span class=mut>${v.g} games \u00b7 ${v.w||0} wins \u00b7 ${v.g?Math.round(100*(v.w||0)/v.g):0}%</span></div>`}).join(''):'<p class=mut>Play a battle to start your stats.</p>');
  $('#un').textContent=ME.u}
 async function recordGame(win,nc){if(!ME||statRec)return;statRec=true;const mine=MP?units.filter(u=>u.own===myId):units.filter(u=>u.side===0),s=ME.stats;
  s.g++;if(win){s.w++;s.streak=(s.streak||0)+1;s.best=Math.max(s.best||0,s.streak)}else{s.l++;s.streak=0}
@@ -1192,7 +1191,7 @@ async function loadAdmin(){fillEventCharacterSelects();refreshEvents().catch(con
   l.append(r)}}
 async function purgeLobbies(){if(!DB){$('#admmsg').textContent='No database connection.';return}const s=await once(DB.collection('lobbies'));let n=0;for(const d of s.docs){await DB.doc('lobbies/'+d.id).delete().catch(()=>{});n++}$('#admmsg').textContent='Removed '+n+' lobbies'}
 
-const GACHA=['Aegis','Fortuna','Royal Giant','The Locust','Chrona','Ruin','Mirage','Cirrus','Shinkai','Ritualis','Azrath','Elysia','Glacien','Riven','Belladonna'];
+const GACHA=['Aegis','Fortuna','Royal Giant','The Locust','Chrona','Ruin','Mirage','Tung Guy','Cirrus','Shinkai','Ritualis','Azrath','Elysia','Glacien','Riven','Belladonna'];
 const GCOL={Aegis:'#5aa0ff',Fortuna:'#ffd23f','Royal Giant':'#ffb347','The Locust':'#ff4a4a',Chrona:'#6ab0ff',Ruin:'#ff3b2a',Mirage:'#c58bff','Tung Guy':'#8c9aa6',Cirrus:'#6fc3ff',Shinkai:'#ffd58a',Ritualis:'#ff5c7a',Azrath:'#ff704d',Elysia:'#fff2a8',Glacien:'#9fe3ff',Riven:'#c9a0ff',Belladonna:'#e0508a'};
 const ADM_ONLY=['Gojo','Buff Doge','Sans','Boss Tung Guy'];
 const visibleRoster=()=>ROSTER.filter(d=>d.n!=='Boss Tung Guy'&&(ME&&ME.role==='admin'||!ADM_ONLY.includes(d.n)));
@@ -1398,7 +1397,7 @@ async function chainTo(prev,t,u){const a=ptc(prev),b=ptc(t);addFx(560,(c,q,ms)=>
 
 function tick(u){const s=u.st;
 
- if(s.poison)dmg(u,3*s.poison.n,'#9c4');
+ if(s.poison)dmg(u,2*s.poison.n,'#9c4');
  if(!u.dead&&s.shock){dmg(u,5,'#fd4');if(u.n!=='Boss Tung Guy')u.ch=Math.max(0,u.ch-1)}
  if(!u.dead&&s.regen)heal(u,8);if(!u.dead&&s.burn)dmg(u,6,'#f93');
  if(u.dead)return;
@@ -1433,7 +1432,7 @@ async function resolveRound(){phase='resolve';cur=null;pend=null;busy=true;rende
  await fxRoundEnd();if(check())return;
  for(const u of units){if(u.dead)continue;for(const k in u.st){const e=u.st[k];if(e.u||k==='slow')continue;if(e.f){e.f=false;continue}if(--e.t<=0)delete u.st[k]}}
  await sleep(400);if(check())return;beginRound()}
-function beginRound(){round++;units.forEach(u=>{if(!u.dead){if(u.ch<capOf(u))u.ch++;u.sb=u.sbn||0;u.sbn=0}});
+function beginRound(){round++;units.forEach(u=>{if(!u.dead){if(u.ch<capOf(u))u.ch=Math.min(capOf(u),u.ch+(window.GMODE==='double'?2:1));u.sb=u.sbn||0;u.sbn=0}});
  for(const f of FX)if(f.k==='voidf')for(const x of units)if(x.side!==f.u.side&&!x.dead){x.sb=0;x.sbn=0}
  for(const f of FX)if(f.k==='winter')for(const x of units)if(x.side!==f.u.side&&!x.dead)x.sb=(x.sb||0)-15;const al=units.filter(u=>!u.dead).map(u=>({u,k:Math.random()}));
  al.sort((a,b)=>(!!a.u.st.slow-!!b.u.st.slow)||(spd(b.u)-spd(a.u))||(a.k-b.k));order=al.map(x=>x.u);for(const f of FX)if(f.k==='voidf'&&f.r0<round&&!f.u.dead){const e=order.find(x=>x.side!==f.u.side);if(e){order.splice(order.indexOf(e),1);const li=order.map(x=>x.side!==f.u.side).lastIndexOf(true);order.splice(li+1,0,e)}}
@@ -1480,17 +1479,38 @@ function mpSubmit(){const pl=planQ.map(u=>{const q=plans[units.indexOf(u)];retur
 function mpCheck(){if(!MP||phase!=='wait'||over||!Lob||!Lob.roster)return;const ow=[...new Set(Lob.roster.map(r=>r.own))];
  if(!ow.every(o=>mpQ[round+'_'+o]))return;phase='resolve';plans={};
  ow.forEach(o=>(mpQ[round+'_'+o].pl||[]).forEach(q=>{const x=units[q.u];if(x&&x.own===o&&!x.dead)plans[q.u]={m:q.m,tg:q.tg,cm:q.cm,ct:q.ct}}));resolveRound()}
+
+/* ---- gamemodes ---- */
+const GMS={classic:['Classic','Pick your own characters.'],
+ rteam:['Random Team','No picks. Each side gets a random team with at least 1 Front, 1 Support and 1 Back.'],
+ double:['Double Charge','Pick your own team. Everyone gains +2 Charge each round instead of +1.'],
+ one:['One and One Only','Each side picks ONE character and fields 5 copies of it (5 on the battlefield).'],
+ mirror:['Mirror Match','No picks. Both sides get the same random team.'],
+ glass:['Glass Cannons','Pick your own team. Everyone starts with half HP.']};
+window.GMODE='classic';
+const gmOf=l=>l&&GMS[l.gm]?l.gm:'classic';
+const gmNeed=l=>{const g=gmOf(l),sz=l.mode==='1v1'?1:2;return g==='rteam'||g==='mirror'?0:g==='one'?1:(sz===1?5:2)};
+const gmHp=h=>window.GMODE==='glass'?Math.max(1,Math.ceil(h/2)):h;
+function initGM(){const s=$('#mgm');if(!s)return;if(!s.options.length){for(const k in GMS){const o=document.createElement('option');o.value=k;o.textContent=GMS[k][0];s.append(o)}s.onchange=()=>{$('#mgd').textContent=GMS[s.value][1]}}$('#mgd').textContent=GMS[s.value][1]}
+function randTeam(k){const pool=ROSTER.filter(d=>d.n!=='Boss Tung Guy'&&!ADM_ONLY.includes(d.n)),rn=a=>a[Math.floor(Math.random()*a.length)],t=[];
+ for(const r of ['Front','Support','Back']){const l=pool.filter(d=>d.role===r&&!t.includes(d.n));if(l.length)t.push(rn(l).n)}
+ while(t.length<k){const l=pool.filter(d=>!t.includes(d.n));if(!l.length)break;t.push(rn(l).n)}
+ for(let i=t.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[t[i],t[j]]=[t[j],t[i]]}return t}
+function buildRoster(T,sz){const g=gmOf(Lob),roster=[],per=sz===1?5:4;
+ if(g==='rteam'||g==='mirror'){const base=randTeam(per);T.forEach((arr,side)=>{const tm=g==='mirror'?base:randTeam(per);tm.forEach((n,i)=>roster.push({n,own:arr[i%arr.length].id,side}))});return roster}
+ if(g==='one'){T.forEach((arr,side)=>arr.forEach((p,pi)=>{const c=sz===1?5:(pi===0?3:2);for(let i=0;i<c;i++)roster.push({n:p.chars[0],own:p.id,side})}));return roster}
+ T.forEach((arr,side)=>arr.forEach(p=>p.chars.forEach(n=>roster.push({n,own:p.id,side}))));return roster}
 const PTH={lob:id=>'lobbies/'+id,req:id=>'requests/'+id,mem:id=>'players/'+id,pick:id=>'picks/'+id};
 let Req=[],Mem=[],Pk={},lobN=0,lobI=0,reqAt=0,reqSeen=false,wasMember=false;
 const okLob=l=>l&&typeof l.name==='string'&&l.name.length<=40&&(l.mode==='1v1'||l.mode==='2v2')&&l.status==='open'&&typeof l.host==='string'&&Date.now()-l.hb<45000;
-function openMP(){if(!gate())return;scr('mp');try{$('#pname').value=localStorage.getItem('pdname')||''}catch(e){}if(ME)$('#pname').value=ME.u;
+function openMP(){if(!gate())return;scr('mp');initGM();try{$('#pname').value=localStorage.getItem('pdname')||''}catch(e){}if(ME)$('#pname').value=ME.u;
  if(!DB){$('#mpmsg').textContent='Could not connect to Firebase. Check your internet connection and your database rules.';$('#mcreate').disabled=true;$('#llist').innerHTML='';return}
  $('#mpmsg').textContent='';$('#mcreate').disabled=false;unsubs.list&&unsubs.list();
  unsubs.list=DB.collection('lobbies').onSnapshot(s=>{const L=s.docs.map(d=>({id:d.id,...d.data()})).filter(okLob).slice(0,30);
   $('#llist').innerHTML=L.length?'':'<p class=mut>No open lobbies. Create one!</p>';
-  L.forEach(l=>{const r=document.createElement('div');r.className='ll';const t=document.createElement('span');t.textContent=l.name+' \u00b7 '+l.mode;const b=document.createElement('button');b.className='small';b.textContent='Request to join';b.onclick=()=>enter(l.id,false);r.append(t,b);$('#llist').append(r)})},e=>{$('#mpmsg').textContent='Connection error: '+e.message})}
+  L.forEach(l=>{const r=document.createElement('div');r.className='ll';const t=document.createElement('span');t.textContent=l.name+' \u00b7 '+l.mode+(l.gm&&GMS[l.gm]&&l.gm!=='classic'?' \u00b7 '+GMS[l.gm][0]:'');const b=document.createElement('button');b.className='small';b.textContent='Request to join';b.onclick=()=>enter(l.id,false);r.append(t,b);$('#llist').append(r)})},e=>{$('#mpmsg').textContent='Connection error: '+e.message})}
 async function create(){if(!DB||!ME)return;const id=rid(),nm=ME.u.slice(0,16),n=Date.now();
- try{await DB.doc(PTH.lob(id)).set({name:nm+'\u2019s lobby',mode:$('#mmode').value==='2v2'?'2v2':'1v1',host:myId,status:'open',hb:n});
+ try{await DB.doc(PTH.lob(id)).set({name:nm+'\u2019s lobby',mode:$('#mmode').value==='2v2'?'2v2':'1v1',gm:GMS[$('#mgm').value]?$('#mgm').value:'classic',host:myId,status:'open',hb:n});
   await DB.doc(PTH.mem(id)+'/'+myId).set({id:myId,name:nm,team:0,t:n})}catch(e){$('#mpmsg').textContent='Could not create the lobby.';return}
  enter(id,true)}
 function enter(id,host){lid=id;Lob=null;Pl=[];Req=[];Mem=[];Pk={};msel=[];ready=false;myTeam=-1;reqSeen=false;wasMember=false;lobN=0;scr('lob');unsubs.list&&unsubs.list();
@@ -1516,7 +1536,7 @@ function exitLobby(msg){Object.values(unsubs).forEach(f=>f&&f());unsubs={};clear
  if(DB&&lid){const id=lid,host=Lob&&Lob.host===myId;DB.doc(PTH.req(id)+'/'+myId).delete().catch(()=>{});DB.doc(PTH.pick(id)+'/'+myId).delete().catch(()=>{});if(!host)DB.doc(PTH.mem(id)+'/'+myId).delete().catch(()=>{});if(host&&!MP)DB.doc(PTH.lob(id)).delete().catch(()=>{})}
  lid=null;Lob=null;wasMember=false;openMP();if(msg)$('#mpmsg').textContent=msg}
 function savePl(r){return DB.doc(PTH.pick(lid)+'/'+myId).set({chars:msel,ready:!!r,hb:Date.now()}).catch(()=>{})}
-function drawLob(){if(!Lob||!lid)return;const host=Lob.host===myId,sz=Lob.mode==='1v1'?1:2,need=sz===1?5:2,me=Pl.find(p=>p.id===myId);$('#lt').textContent=Lob.name+' ('+Lob.mode+')';
+function drawLob(){if(!Lob||!lid)return;const host=Lob.host===myId,sz=Lob.mode==='1v1'?1:2,need=gmNeed(Lob),me=Pl.find(p=>p.id===myId);$('#lt').textContent=Lob.name+' ('+Lob.mode+')'+(gmOf(Lob)!=='classic'?' \u00b7 '+GMS[gmOf(Lob)][0]:'');$('#lgm').textContent=gmOf(Lob)==='classic'?'':GMS[gmOf(Lob)][0]+': '+GMS[gmOf(Lob)][1];
  if(me){myTeam=me.team;ready=me.ready;wasMember=true;$('#lmsg').textContent=''}else $('#lmsg').textContent=host?'':'Request sent. Waiting for the host to approve you\u2026';
  const box=$('#lteams');box.innerHTML='';
  [0,1].forEach(t=>{const d=document.createElement('div');d.className='team';const h=document.createElement('b');h.textContent='Team '+(t?'B':'A');d.append(h);
@@ -1526,7 +1546,7 @@ function drawLob(){if(!Lob||!lid)return;const host=Lob.host===myId,sz=Lob.mode==
   for(const r of Req.slice(0,8)){const row=document.createElement('div');row.className='admrow';const nm=document.createElement('span');nm.textContent=String(r.name||'Player').slice(0,16);row.append(nm);
    for(const t of [0,1])if(Pl.filter(p=>p.team===t).length<sz){const b=document.createElement('button');b.className='small';b.textContent='Approve \u2192 Team '+(t?'B':'A');b.onclick=()=>approve(r.id,t);row.append(b)}
    const dn=document.createElement('button');dn.className='small';dn.textContent='Deny';dn.onclick=()=>deny(r.id);row.append(dn);rq.append(row)}}
- $('#lsel').style.display=me?'block':'none';
+ $('#lsel').style.display=me&&need?'block':'none';
  if(me){$('#lslots').innerHTML=Array.from({length:need},(_,i)=>{const c=byN(msel[i]);return `<button class=slot data-i=${i}>${c?`<i style="${ico(c)}"></i><b>${c.n}</b>`:'<span class=mut>Empty</span>'}</button>`}).join('');
   $('#lgrid').innerHTML=visibleRoster().map(c=>card(c,msel.includes(c.n))).join('');
   $('#lslots').querySelectorAll('.slot').forEach(b=>b.onclick=()=>{if(ready)return;msel.splice(+b.dataset.i,1);savePl(false)});
@@ -1534,13 +1554,13 @@ function drawLob(){if(!Lob||!lid)return;const host=Lob.host===myId,sz=Lob.mode==
  $('#lready').style.display=me?'':'none';$('#lready').textContent=ready?'Unready':'Ready';$('#lready').disabled=!ready&&msel.length!==need;
  const full=[0,1].every(t=>Pl.filter(p=>p.team===t).length===sz)&&Pl.every(p=>p.ready&&p.chars.length===need);
  $('#lstart').style.display=host?'':'none';$('#lstart').disabled=!full}
-async function startLobby(){const sz=Lob.mode==='1v1'?1:2,need=sz===1?5:2;
+async function startLobby(){const sz=Lob.mode==='1v1'?1:2,need=gmNeed(Lob);
  const T=[0,1].map(t=>Pl.filter(p=>p.team===t).sort((a,b)=>a.t-b.t||(a.id<b.id?-1:1)));
  if(T[0].length!==sz||T[1].length!==sz||Pl.some(p=>!p.ready||p.chars.length!==need||p.chars.some(n=>!byN(n))))return;
- const roster=[];T.forEach((arr,side)=>arr.forEach(p=>p.chars.forEach(n=>roster.push({n,own:p.id,side}))));
+ const roster=buildRoster(T,sz);
  await DB.doc(PTH.lob(lid)).update({status:'playing',seed:Math.floor(Math.random()*4294967295),roster})}
 
-function startMP(){const L=Lob;if(MP||!L.roster)return;MP=true;
+function startMP(){const L=Lob;if(MP||!L.roster)return;MP=true;window.GMODE=gmOf(L);
  const mk=side=>L.roster.filter(r=>r.side===side&&byN(r.n)).map(r=>({...byN(r.n),own:r.own}));
  teamP=mk(0);teamE=mk(1);mySide=(L.roster.find(r=>r.own===myId)||{side:0}).side;
  mpSeq=0;mpQ={};waiting=false;Math.random=mulb(L.seed);clearInterval(hbT);clearInterval(lobI);
@@ -1549,7 +1569,7 @@ function startMP(){const L=Lob;if(MP||!L.roster)return;MP=true;
 function mpLeft(a){if(over||!MP)return;const r=Lob&&Lob.roster&&Lob.roster.find(x=>x.own===a.by);over=true;gen++;busy=true;recordGame(!(r&&r.side===mySide));
  $('#et').textContent=r&&r.side===mySide?'Defeat':'Opponent left: Victory';$('#end').style.display='flex'}
 function mpExit(){if(!over&&MP)recordGame(false,true);if(!over&&DB&&lid)DB.collection('actions/'+lid).doc('leave_'+myId).set({k:'leave',by:myId}).catch(()=>{});
- Object.values(unsubs).forEach(f=>f&&f());unsubs={};clearInterval(hbT);Math.random=realRnd;MP=false;$('#pb').style.display='';$('#rs').style.display='';
+ Object.values(unsubs).forEach(f=>f&&f());unsubs={};clearInterval(hbT);Math.random=realRnd;MP=false;window.GMODE='classic';$('#pb').style.display='';$('#rs').style.display='';
  if(DB&&lid){if(Lob&&Lob.host===myId)DB.doc('lobbies/'+lid).update({status:'done'}).catch(()=>{});DB.doc(PTH.pick(lid)+'/'+myId).delete().catch(()=>{});DB.doc(PTH.mem(lid)+'/'+myId).delete().catch(()=>{})}lid=null;Lob=null}
 let leave=()=>{if(seasonalBattle){leaveSeasonal();return}if(MP)mpExit();gen++;paused=false;$('#pz').style.display='none';scr('menu')};
 $('#b4').onclick=()=>openMP();$('#mcreate').onclick=()=>create();$('#mback').onclick=()=>{unsubs.list&&unsubs.list();unsubs={};scr('menu')};
@@ -1571,7 +1591,7 @@ const POS=['shielded','regen','fort','evasion','empowered','surge','guard','reso
 function furyUp(u){if(pn(u,'Azrath')&&!u.dead){u.fury=Math.min(3,(u.fury||0)+1);pop(u,'FURY '+u.fury,'#ff6a2a')}}
 function extraChips(u){const c=(t,h)=>`<span class=chip title="${h}">${t}</span>`;let s='';
  if(pn(u,'Shinkai'))s+=c('Swords x'+(u.sws||0),'Blade Orbit deals 8 per sword (max 24)')+c('Blade x'+(u.blds||0),'+3 damage per Blade on the next sword-based attack');
- if(pn(u,'Ritualis'))s+=c('Ritual x'+(u.rit||0),'Cataclysm Rite: 12 + 12 per stack. At 3 stacks it also Burns.');
+ if(pn(u,'Ritualis'))s+=c('Ritual x'+(u.rit||0),'Cataclysm Rite: 12 + 12 per stack (max 15 per enemy). At 3 stacks it also Burns.');
  if(pn(u,'Azrath'))s+=c('Fury x'+(u.fury||0),'+4% damage per stack on the next damaging move');
  if(pn(u,'Glacien'))s+=c('Frost x'+(u.frost||0),'At 3 stacks: next damaging move +6 damage');
  return s}
@@ -1603,7 +1623,7 @@ Object.assign(D('Ritualis','Last Ritualist',90,'#c0405a',0,[
  M('Ritual Dagger',0,'e','7 dmg',{d:7}),
  M('Draw the Circle',1,'self','Gain 1 Ritual stack (max 3)',{rit:1}),
  M('Offerings',2,'self','Lose 5 HP and gain 2 Ritual stacks (max 3)',{rit:2,selfhp:5}),
- M('Cataclysm Rite',3,'ae','Consume all Ritual stacks: 12 dmg + 12 per stack to all enemies. At 3 stacks, also Burn 2 turns',{d:12,nocap:1,dyn:u=>{const s=u.rit||0;u.rit=0;const r={d:12+12*s};if(s>=3)r.st=[{k:'burn',t:3}];return r}})]),
+ M('Cataclysm Rite',3,'ae','Consume all Ritual stacks: 12 dmg + 12 per stack to all enemies (max 15 per enemy). At 3 stacks, also Burn 2 turns',{d:12,dyn:u=>{const s=u.rit||0;u.rit=0;const r={d:12+12*s};if(s>=3)r.st=[{k:'burn',t:3}];return r}})]),
  {p:'Unbroken Circle: at the end of each of his turns Ritualis gains 1 Ritual stack (max 3) if he was not Staggered that turn. Damage does not interrupt the ritual, but control effects do.',spd:35,role:'Back'}),
 Object.assign(D('Azrath','Bound Demon',130,'#d0402a',1,[
  M('Claw Rend',0,'e','12 dmg',{d:12}),
@@ -1633,14 +1653,14 @@ Object.assign(D('Belladonna','Poison Duchess',100,'#4a9a58',0,[
  M('Thorned Fan',0,'e','9 dmg',{d:9}),
  M('Venom Kiss',1,'e','6 dmg and 2 Poison stacks',{d:6,st:[{k:'poison',n:2}]}),
  M('Toxic Perfume',2,'r2','2 Poison stacks to 2 random enemies',{st:[{k:'poison',n:2}]}),
- M('Garden of Decay',4,'ae','20 dmg to all enemies and 2 Poison stacks to each',{d:20,nocap:1,st:[{k:'poison',n:2}]})]),
+ M('Garden of Decay',4,'ae','15 dmg to all enemies and 2 Poison stacks to each',{d:15,st:[{k:'poison',n:2}]})]),
  {p:'Slow Venom: the first time each round Belladonna applies Poison, she adds 1 extra Poison stack. This cannot trigger from damage-over-time effects.',spd:75,role:'Back'})
 ];
 NEWC.forEach(d=>ROSTER.push(d));
 ['Cirrus','Shinkai','Azrath','Riven'].forEach(n=>MELEE.add(n));
 const TUNG_GUY=Object.assign(D('Tung Guy','Moai Guardian',220,'#8795a3',1,[
  M('Stone',0,'e','A simple stone action. Deals no damage.',{d:0}),
- M('TUNG',8,'ae','TUNG: deal 60 damage to every living enemy.',{d:60,nocap:1,vfx:'quake'})
+ M('TUNG',8,'ae','TUNG: deal 15 damage to every living enemy.',{d:15,vfx:'quake'})
 ]),{p:'Unmoving Monument: takes 25% less damage, cannot be healed, and can store up to 8 Charge.',spd:40,role:'Front'});
 ROSTER.push(TUNG_GUY);
 // Seasonal event boss: distinct from the playable Tung Guy and never part of the gacha pool.
@@ -3226,7 +3246,7 @@ drawInfo=function(n){let d=byN(n||infoN||ROSTER[0].n);if(!d||d.n==='Boss Tung Gu
 drawAcct=function(){const p=q('#aprof');q('#alogin').style.display=ME?'none':'';q('#alo').style.display=ME?'':'none';q('#aadm').style.display=ME&&ME.role==='admin'?'':'none';p.style.display=ME?'block':'none';if(!ME)return;
  p.classList.add('win');const s=ME.stats,G=s.g||0,W=s.w||0,L=s.l||0,box=(ic,a,b)=>`<div class=sb>${IC(ic)}<span>${b}</span><b>${a}</b></div>`;
  const cs=Object.entries(s.chars||{}).filter(([n])=>byN(n)).sort((x,y)=>(y[1].g||0)-(x[1].g||0)).slice(0,6);
- p.innerHTML=`<div class=plate>PROFILE</div><h2><span id=un></span>${ME.role==='admin'?` <span class=adm>${IC('ult')}ADMIN</span>`:''}</h2><div class=sg>${box('swords',G,'Games')}${box('ult',W,'Wins')}${box('x',L,'Losses')}${box('marked',G?Math.round(100*W/G)+'%':'-','Win rate')}${box('burn',s.streak||0,'Win streak')}${box('gl',s.best||0,'Best streak')}${box('role-front',s.sp||0,'Single-player')}${box('tg-e',s.m1||0,'1v1 online')}${box('tg-allies',s.m2||0,'2v2 online')}${box('ult',s.ult||0,'Ultimates used')}${box('dmark',s.kills||0,'Defeats dealt')}${box('bleed',s.dmg||0,'Damage dealt')}${box('coin',ME.coins||0,'Coins')}${box('ticket',ME.rolls||0,'Free rolls')}${box('dice',GACHA.filter(owns).length+'/'+GACHA.length,'Gatcha characters')}</div><h3>Most-used characters</h3>`+
+ p.innerHTML=`<div class=plate>PROFILE</div><h2><span id=un></span>${ME.role==='admin'?` <span class=adm>${IC('ult')}ADMIN</span>`:''}</h2><div class=sg>${box('swords',G,'Games')}${box('ult',W,'Wins')}${box('x',L,'Losses')}${box('marked',G?Math.round(100*W/G)+'%':'-','Win rate')}${box('burn',s.streak||0,'Win streak')}${box('gl',s.best||0,'Best streak')}${box('role-front',s.sp||0,'Single-player')}${box('tg-e',s.m1||0,'1v1 online')}${box('tg-allies',s.m2||0,'2v2 online')}${box('ult',s.ult||0,'Ultimates used')}${box('dmark',s.kills||0,'Defeats dealt')}${box('bleed',s.dmg||0,'Damage dealt')}${box('coin',ME.coins||0,'Coins')}${box('ticket',ME.rolls||0,'Free rolls')}${box('dice',GACHA.filter(owns).length+'/'+GACHA.length,'Gacha characters')}</div><h3>Most-used characters</h3>`+
   (cs.length?cs.map(([n,v])=>`<div class=cr><span class=pt style="background-image:url(${portrait(n).url})"></span><b>${esc(n)}</b><span class=mut>${v.g} games · ${v.w||0} wins · ${v.g?Math.round(100*(v.w||0)/v.g):0}%</span></div>`).join(''):'<p class=mut>Play a battle to start your stats.</p>');
  q('#un').textContent=ME.u};
 // ---- lobby (decorate core markup, keep its handlers) ----
@@ -4610,7 +4630,7 @@ function sSlotPort(u,m){if(u.dead||!m)return;
  const c=u.st.contagion;if(c){c.c=(c.c||0)+1;if(c.c>=3&&(c.sp||0)<2){const o=S.u.filter(x=>x.side===u.side&&x!==u&&!x.dead);if(o.length){c.sp=(c.sp||0)+1;const t=rndS(o);sDmg(u,12*UM);sDmg(t,12*UM)}}}
  const b=u.st.blackout;if(b&&m.c>=2&&b.src&&b.src.bo&&b.src.bo.r!==S.r){b.src.bo.r=S.r;if(u.ch>0){const L=Math.min(u.ch,4);u.ch-=L;b.src.bo.lost++}}}
 function sTick(u){const s=u.st;
- if(s.poison)sDmg(u,3*s.poison.n);
+ if(s.poison)sDmg(u,2*s.poison.n);
  if(!u.dead&&s.shock){sDmg(u,5);u.ch=Math.max(0,u.ch-1)}
  if(!u.dead&&s.regen)sHeal(u,8);if(!u.dead&&s.burn)sDmg(u,6);
  if(!u.dead&&u.krd&&u.krd.length){for(const e of u.krd){const x=Math.ceil(e.rem/e.t);e.rem-=x;e.t--;if(x>0&&!u.dead)sDmg(u,x)}u.krd=u.krd.filter(e=>e.t>0&&e.rem>0)}}
@@ -4726,7 +4746,7 @@ function sResolve(P){
  sCheck()}
 function sBegin(){
  const nr=S.r+1;if(S.del.length){const due=S.del.filter(e=>e.r===nr);S.del=S.del.filter(e=>e.r!==nr);for(const e of due)if(e.t&&!e.t.dead)sDmg(e.t,e.d);if(due.length&&sCheck())return}
- S.r++;for(const u of S.u)if(!u.dead){if(u.ch<capOf(u))u.ch++;u.sb=u.sbn||0;u.sbn=0}
+ S.r++;for(const u of S.u)if(!u.dead){if(u.ch<capOf(u))u.ch=Math.min(capOf(u),u.ch+(window.GMODE==='double'?2:1));u.sb=u.sbn||0;u.sbn=0}
  for(const f of S.fx)if(f.k==='voidf')for(const x of S.u)if(x.side!==f.u.side&&!x.dead){x.sb=0;x.sbn=0}
  for(const f of S.fx)if(f.k==='winter')for(const x of S.u)if(x.side!==f.u.side&&!x.dead)x.sb=(x.sb||0)-15;
  const al=[];for(const u of S.u)if(!u.dead)al.push({u,k:R()});
