@@ -30,7 +30,7 @@ body{background:var(--bg);color:var(--ink);font:13px/1.4 ui-monospace,Menlo,Cons
 .mv:disabled{opacity:.4;cursor:not-allowed}
 .mv span{display:block;color:var(--mut);font-size:11px;margin-top:2px}
 .mv i{float:right;font-style:normal;color:var(--pip)}
-.unit{position:absolute;width:90px;margin:calc(var(--sh)*-.914) 0 0 -45px;--sh:clamp(60px,11vh,92px);text-align:center;transition:transform .18s;cursor:default}
+.unit{position:absolute;width:90px;margin:calc(var(--sh)*-.914) 0 0 -45px;--sh:clamp(60px,11vh,92px);text-align:center;transition:transform .18s;cursor:default}.unit.seasonal-boss{transform:scale(1.22);transform-origin:center 78%}
 .body{width:44px;height:64px;margin:0 auto;border:3px solid #0b0816;box-shadow:inset -6px -6px 0 #0003,inset 6px 6px 0 #fff2;position:relative}
 .body:before,.body:after{content:"";position:absolute;top:12px;width:7px;height:7px;background:#fff;box-shadow:inset 3px 0 0 #000}
 .body:before{left:8px}.body:after{left:25px}
@@ -862,7 +862,7 @@ Object.assign(D('Sable','Control Mage',95,'#7b3fbf',0,[M('Void Shard',0,'e','9 d
 const Z=[
 D('Aegis','Protector',145,'#3c5fa8',1,[M('Shield Jab',0,'e','9 dmg',{d:9}),M('Interpose',1,'ally','Next single-target attack on an ally hits Aegis instead (he takes 25% less)',{st:[{k:'icpt',u:1}]}),M('Mirror Aegis',2,'ally','Next hit on an ally is halved; the attacker takes 50% of the damage prevented',{st:[{k:'mirror',u:1}]}),M('Judgement Break',4,'e','28 dmg, +10 if Aegis was attacked since his last turn',{d:28,pc:1,pcv:10})]),
 D('Fortuna','Gambler',100,'#8a2a4a',0,[M('Lucky Strike',0,'e','d6: 1-2 = 5 dmg, 3-4 = 10, 5 = 15, 6 = 20',{rl:'ls'}),M('Double or Nothing',1,'e','Coin flip: heads 24 dmg; tails 6 dmg and Fortuna loses 5 HP',{rl:'dn'}),M('Loaded Table',2,'e','d6: 1-2 Fortuna is Vulnerable 1 turn; 3-4 deal 17; 5-6 deal 25',{rl:'lt'}),M('Jackpot',5,'ae','d6: 1-2 15 to all; 3-4 30 to a random enemy; 5 38 to a random enemy; 6 45 to the lowest-HP enemy',{rl:'jp'})]),
-D('Royal Giant','Siege',160,'#2f4d8c',1,[M('Cannon Bash',0,'e','12 dmg',{d:12}),M('Royal Shot',2,'e','22 dmg',{d:22}),M('Recoil Blast',3,'e','20 dmg to the target, 7 to every other enemy; Royal Giant takes 4 recoil',{d:20,sp:7,rec:4}),M('Crown Demolisher',5,'e','42 dmg, destroys the target\u2019s Shield first',{d:42,brk:1})]),
+D('Royal Giant','Siege',160,'#2f4d8c',1,[M('Cannon Bash',0,'e','12 dmg',{d:12}),M('Royal Shot',2,'e','22 dmg',{d:22}),M('Recoil Blast',3,'e','20 dmg to the target, 7 to every other enemy; Royal Giant takes 4 recoil',{d:20,sp:7,rec:4}),M('Crown Demolisher',5,'e','45 dmg, destroys the target\u2019s Shield first',{d:45,brk:1})]),
 D('The Locust','Horror',125,'#c58f8f',1,[M('Raking Limbs',0,'e','10 dmg, +3 if Hunger is 3+',{d:10,hg:[3,3]}),M('Feeding Frenzy',2,'e','20 dmg, heal 25% of damage dealt',{d:20,leech:.25}),M('Shed the Skin',3,'self','Remove negative statuses, gain Fortified 1 turn, lose 8 HP',{shed:1}),M('Black Swarm',5,'ae','15 dmg to all (max), Fear 1 turn',{d:15,hg:[5,6],st:[{k:'fear',t:1}]})]),
 D('Chrona','Support',100,'#3a6bd8',0,[M('Clockstrike',0,'e','8 dmg',{d:8}),M('Fast Forward',1,'ally','Ally gains +12 Speed next round; Chrona loses 2 HP',{spd:12}),M('Frozen Moment',3,'e','15 dmg, Slow 1 turn',{d:15,st:[{k:'slow',t:1}]}),M('Borrowed Future',5,'ally','Ally gains 1 Charge and +25% damage on their next move; Chrona loses 12 HP',{ch:1,st:[{k:'amp',u:2}],selfhp:12})]),
 D('Ruin','Berserker',110,'#9b3a2a',1,[M('Heavy Cleave',0,'e','12 dmg',{d:12}),M('Blood Price',1,'e','Lose 6 HP, then deal 20 dmg',{d:20,pre:6}),M('Rupture',3,'e','27 dmg, Bleed',{d:27,st:[{k:'bleed',n:2}]}),M('Worldbreaker',5,'e','42 dmg, then lose 15 HP',{d:42,selfhp:15})]),
@@ -895,7 +895,7 @@ let units,order,idx,round,cur,pend,busy,over,logs,plans={},phase='',planQ=[],pi=
 function init(){gen++;paused=false;$('#pz').style.display='none';$('#pb').textContent='Pause';const A=$('#arena');A.querySelectorAll('.unit,.proj').forEach(e=>e.remove());$('#end').style.display='none';$('#rew').textContent='';
  units=[];order=[];idx=0;round=0;cur=null;pend=null;busy=false;over=false;logs=[];
  [teamP,teamE].forEach((T,side)=>T.forEach((d,i)=>{const u={...d,side,wisps:[],void:0,max:gmHp(d.hp),hp:gmHp(d.hp),ch:0,st:{},dead:false,wasHit:false};
-  const el=document.createElement('div');el.className='unit'+(side?' e':'');
+  const el=document.createElement('div');el.className='unit'+(side?' e':'')+(seasonalBattle&&side===1?' seasonal-boss':'');
   el.style.left=((side?(d.fr?66:84):(d.fr?34:16))+(i%2?3:-3))+'%';el.style.top=(52+i*(T.length>1?34/(T.length-1):0))+'%';
   el.innerHTML=`<div class=mk></div><div class=sdw></div>${bodyHtml(d)}<i class=hpb><b></b></i><div class=pips></div><div class=nm>${d.n}</div><div class=sts></div>`;
   el.onclick=()=>{if(pend&&!busy&&!paused&&valid(u)){if(pend.t==='echo'){echoClick(u);return}const m=pend;pend=null;commit(cur,m,u)}};
@@ -921,10 +921,11 @@ function gui(){const u=cur,g=$('#gui');
  <div class=row>HP <i class=hpb><b style="width:${u.hp/u.max*100}%"></b></i>${u.hp}/${u.max}</div>
  <div class=row>Charge <span style="color:var(--pip)">${'\u25c6'.repeat(Math.min(u.ch,8))||'-'}</span>${u.ch}</div>
  <div class=row>Speed ${spd(u)}</div>
- <h3>Status</h3>${sts}<h3>Moves</h3>`+u.mv.map((m,i)=>`<button class="mv${pend===m?' sel':''}" data-i="${i}" ${can&&m.c<=u.ch&&(!m.rq||units.some(o=>o.side!==u.side&&!o.dead&&o.st[m.rq]))&&!(u.st.fear&&m.t==='ae')?'':'disabled'}>${m.n}<i>${m.c} \u25c6</i><span>${m.x}</span></button>`).join('')+(ultOK(u)&&canAct(u)?`<button class="mv ult" data-i="4" ${can?'':'disabled'}>\u2605 ULTIMATE: ${ULTS[u.n].n}<span>${ULTS[u.n].x}</span></button>`:'')+(pend&&pend.ult&&pend.t==='echo'&&ultSt.v&&!ultSt.cm?`<h3>Choose ${ultSt.v.n}\u2019s move</h3>`+ultSt.v.mv.map((m2,j)=>`<button class="mv em" data-j="${j}" ${m2.c<=ultSt.v.ch?'':'disabled'}>${m2.n}<i>${m2.c} \u25c6</i><span>${m2.x}</span></button>`).join(''):'')+sum+btn;bind()}
+ <h3>Status</h3>${sts}<h3>Moves</h3>`+u.mv.map((m,i)=>{const tungUlt=(u.n==='Tung Guy'||u.n==='Boss Tung Guy')&&m.n==='TUNG';const lockedTung=tungUlt&&(!lastAllyStanding(u)||u.ulted);return `<button class="mv${pend===m?' sel':''}" data-i="${i===4&&AUTO_ULTS[u.n]?5:i}" ${can&&m.c<=u.ch&&(!m.rq||units.some(o=>o.side!==u.side&&!o.dead&&o.st[m.rq]))&&!(u.st.fear&&m.t==='ae')&&!lockedTung?'':'disabled'}>${m.n}<i>${m.c} \u25c6</i><span>${tungUlt&&!lastAllyStanding(u)?'Only usable when last ally standing':tungUlt&&u.ulted?'Already used this battle':m.x}</span></button>`}).join('')+(ultOK(u)&&canAct(u)?`<button class="mv ult" data-i="4" ${can?'':'disabled'}>\u2605 ULTIMATE: ${(ULTS[u.n]||AUTO_ULTS[u.n]).n}<span>${(ULTS[u.n]||AUTO_ULTS[u.n]).x}</span></button>`:'')+(pend&&pend.ult&&pend.t==='echo'&&ultSt.v&&!ultSt.cm?`<h3>Choose ${ultSt.v.n}\u2019s move</h3>`+ultSt.v.mv.map((m2,j)=>`<button class="mv em" data-j="${j}" ${m2.c<=ultSt.v.ch?'':'disabled'}>${m2.n}<i>${m2.c} \u25c6</i><span>${m2.x}</span></button>`).join(''):'')+sum+btn;bind()}
 function pick(i){if(!cur||phase!=='plan'||busy||paused||!canAct(cur))return;
+ const moveIndex=i===5?4:i;
  if(i===4){if(!ultOK(cur))return;if(pend&&pend.ult){pend=null;ultSt={};render();return}const m=ULT(cur);if(m.t==='self')commit(cur,m);else{pend=m;ultSt={};render()}return}
- const m=cur.mv[i];if(!m||m.c>cur.ch||(cur.st.fear&&m.t==='ae'))return;
+ const m=cur.mv[moveIndex];if(!m||m.c>cur.ch||(cur.st.fear&&m.t==='ae'))return;const tungUlt=(cur.n==='Tung Guy'||cur.n==='Boss Tung Guy')&&m.n==='TUNG';if(tungUlt&&(!lastAllyStanding(cur)||cur.ulted))return;
  if(pend===m){pend=null;render();return}
  if(m.t==='e'&&!units.some(x=>x.side!==cur.side&&!x.dead&&!x.air))commit(cur,m,null);else if(m.t==='e'||m.t==='ally'){pend=m;ultSt={};render()}else commit(cur,m)}
 function drawArcs(){const g=$('#arcg');g.innerHTML='';if(phase!=='plan'&&phase!=='wait')return;
@@ -963,7 +964,7 @@ function hit(a,t,m,extra){let [b,x]=dmgBase(a,t,m,extra);if(t.ipr)t.ipr=0;
  if(t.fz&&t.fz.r!==round){t.fz.r=round;t.fz.n++;pop(t,'FORTRESS','#8cf');return}
  let dd=Math.round(b*x)+(a.pen||0);dd=moraleDmg(a,m,dd+stdFlat(a,m));if(a.pen)a.pen=0;if(t.st.shell){dd=Math.round(dd*.5);if(!a.dead)dmg(a,Math.round(dd*.5),'#8cf')}if(t.st.mirror){const pv=Math.round(dd*.5);dd-=pv;delete t.st.mirror;if(!a.dead)dmg(a,Math.round(pv*.5),'#8cf')}NBF=1;dmg(t,dd);NBF=0;emit('hit',a,t,dd,m);t.wasHit=true;a.dd=(a.dd||0)+dd;if(t.dead)a.kills=(a.kills||0)+1;if(MELEE.has(a.n))slashFx(t);if(a.bl&&a.bl.on)a.bl.d+=dd;if(a.nx&&t===a.nx.q)a.nx.d+=dd;if(t.oath){t.oath.rec+=dd;const kk=units.indexOf(a);t.oath.by[kk]=(t.oath.by[kk]||0)+dd}if(t.rt)t.rt.s=Math.min(5,t.rt.s+1);if(t.duel&&!t.dead&&a!==t.duel.tgt&&a.side!==t.side&&!a.dead)dmg(a,30,'#ffcf7a');const dk=t.st.dmark;if(dk&&dk.src===a&&dk.lr!==round&&!t.dead){dk.lr=round;dk.n--;pop(t,'\u2620'+dk.n,'#ff4d4d');if(dk.n<=0){delete t.st.dmark;dmarkFire(t,dk.src)}}if(t.dead&&a.st.dmark&&a.st.dmark.src===t){delete a.st.dmark;dmg(a,20*UM,'#ff4d4d')}for(const g of units)if(pn(g,'Aegis')&&!g.dead&&g.side===t.side&&g!==t&&g.vgr!==round){g.vgr=round;g.st.guard=g.st.guard||{n:0,t:1,u:2,src:null};g.st.guard.n=Math.min(3,g.st.guard.n+1)}if(pn(t,'Bront')&&a.side!==t.side&&!t.dead){t.st.resolve=t.st.resolve||{n:0,t:1,u:1,src:null};t.st.resolve.n=Math.min(3,t.st.resolve.n+1)}if(pn(t,'Rook')&&t.rk!==round&&!t.dead){t.rk=round;t.st.cf={n:1,t:1,u:1,src:null}}if(!t.dead){setF(t,'hit');setTimeout(()=>setF(t,'idle'),1000)}if(pn(a,'Talon')&&!a.prey&&!t.dead){a.prey=1;addSt(t,'tracked',1,2,a)}t.el.animate([{filter:'brightness(3)'},{filter:'none'}],150);
  const bl=t.st.bleed;if(bl&&!t.dead){dmg(t,4*bl.n,'#f55');if(--bl.n<=0)delete t.st.bleed}return dd}
-async function run(u,m,tg){busy=true;pend=null;render();
+async function run(u,m,tg){if((u.n==='Tung Guy'||u.n==='Boss Tung Guy')&&m.n==='TUNG'){if(!lastAllyStanding(u)||u.ulted){log(`<b>${u.n}</b> can only use TUNG once, as the last ally standing.`);return}u.ulted=true}busy=true;pend=null;render();
  u.ch-=m.c;let ex=0;if(m.all){ex=u.ch;u.ch=0}
  const fo=units.filter(x=>x.side!==u.side&&!x.dead),fr=units.filter(x=>x.side===u.side&&!x.dead),sh=a=>{const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r};
  let T={e:[tg],ae:fo,r2:wsh(fo).slice(0,2),r3:wsh(fo).slice(0,3),self:[u],ally:[tg],allies:fr,r2a:sh(fr).slice(0,2)}[m.t];
@@ -1004,8 +1005,9 @@ async function rollMove(u,m,tg,fo){const coin=m.rl==='dn',roll=()=>coin?(Math.ra
  return {d,T,self,vs}}
 const UM=4;const pn=(u,n)=>u.n===n||u.cp===n;
 const foes=u=>units.filter(x=>x.side!==u.side&&!x.dead),lowest=u=>{const f=foes(u);return f.length?f.reduce((a,b)=>b.hp<a.hp?b:a):null},highest=u=>{const f=foes(u);return f.length?f.reduce((a,b)=>b.hp>a.hp?b:a):null};
-let ultOK=u=>!!(ULTS[u.n]&&!u.ulted&&!u.dead&&!u.st.domain&&units.filter(x=>x.side===u.side&&!x.dead).length===1);
-const ULT=u=>({n:'ULTIMATE',c:0,t:ULTS[u.n].t,x:ULTS[u.n].x,ult:1}),gm=(u,i)=>i===4&&!(u.mv&&u.mv[4])?ULT(u):u.mv[i];
+const lastAllyStanding=u=>!!u&&!u.dead&&units.filter(x=>x.side===u.side&&!x.dead&&!x.soldier&&!x.tungClone).length===1;
+let ultOK=u=>!!((ULTS[u.n]||AUTO_ULTS[u.n])&&!u.ulted&&!u.dead&&!u.st.domain&&lastAllyStanding(u));
+const ULT=u=>{const d=ULTS[u.n]||AUTO_ULTS[u.n];return {n:'ULTIMATE',c:0,t:d.t,x:d.x,ult:1}},gm=(u,i)=>i===4&&!(u.mv&&u.mv[4])?ULT(u):u.mv[i];
 function setGhosts(u){u.el.querySelectorAll('.gh').forEach(e=>e.remove());const o=[-46,46,-92,92];for(let i=0;i<(u.il||0);i++)addGhost(u,u,o[i])}
 function addGhost(u,src,off){const t=document.createElement('div');t.innerHTML=bodyHtml(src);const e=t.firstChild;e.classList.add('gh');e.style.cssText+=`;position:absolute;left:0;top:0;opacity:.45;pointer-events:none;transform:translateX(${off}px)${src.side?' scaleX(-1)':''}`;u.el.insertBefore(e,u.el.querySelector('.sdw'))}
 async function rollAnim(u,coin,v){const e=document.createElement('div');e.className='dice'+(coin?' coin':'');u.el.appendChild(e);const F=['\u2680','\u2681','\u2682','\u2683','\u2684','\u2685'];
@@ -1064,7 +1066,7 @@ async function cutscene(u){const d=ULTS[u.n]||AUTO_ULTS[u.n],th=TH[u.n],q=SPR2[u
  const cv=cut.querySelector('canvas'),c=cv.getContext&&cv.getContext('2d');let raf=0;
  if(c){const w=cv.width=innerWidth,h=cv.height=innerHeight,t0=performance.now();const loop=()=>{const t=(performance.now()-t0)/1000;try{c.setTransform(1,0,0,1,0,0);const g=c.createRadialGradient(w/2,h/2,0,w/2,h/2,Math.max(w,h)*.7);g.addColorStop(0,th[1]);g.addColorStop(1,'#000');c.fillStyle=g;c.fillRect(0,0,w,h);th[2](c,t,w,h)}catch(e){}raf=requestAnimationFrame(loop)};loop()}
  await sleep(5900);cancelAnimationFrame(raf);cut.remove()}
-async function doUlt(u,p){u.ulted=true;log(`<b>${u.n}</b> unleashes ${ULTS[u.n].n}!`);await cutscene(u);if(u.dead)return;await ULTS[u.n].run(u,p);render();await sleep(500)}
+async function doUlt(u,p){const d=ULTS[u.n]||AUTO_ULTS[u.n];if(!d)return;u.ulted=true;log(`<b>${u.n}</b> unleashes ${d.n}!`);await cutscene(u);if(u.dead)return;await d.run(u,p);render();await sleep(500)}
 async function runCtl(u,c){const m=c.m;if(!m||m.c>u.ch){log(`<b>${u.n}</b> resists the strings`);return}log(`<b>${u.n}</b> is controlled!`);pop(u,'CONTROLLED','#b05fa8');u.side=1-u.side;u.ctlx=1;
  try{let t=c.t&&!c.t.dead?c.t:null;if(m.t==='e'&&(!t||t.side===u.side))t=rnd(foes(u));if(m.t==='ally'&&(!t||t.side!==u.side))t=rnd(units.filter(x=>x.side===u.side&&!x.dead));if(!(m.t==='e'&&!t))await run(u,m,t)}finally{u.side=1-u.side;u.ctlx=0}}
 function echoClick(u){if(!ultSt.v){ultSt.v=u;render();return}commitEcho(u)}
@@ -1321,6 +1323,7 @@ async function startSeasonalBattle(id){
   const st=eventStatus(e);if(st!=='active'||Number(e.currentHp)<=0){alert('This event is not currently fightable.');return}
   const userId=ME.uid||myId||ME.key,prior=e.attackers&&e.attackers[userId];
   if(prior){alert(prior.status==='in_progress'?'Your attempt has already been reserved. Finish or refresh that encounter.':'You have already used your one attempt for this event.');return}
+  const eventAdminOnly=['Gojo','Sans','Buff Doge'];if(sel.some(n=>eventAdminOnly.includes(n))){alert('Seasonal events cannot be entered with admin-only characters (Gojo, Sans, or Buff Doge) in your team. Remove them and try again.');return}
   sel=sel.filter(n=>owns(n)&&byN(n));if(sel.length<5){drawSel();scr('select');$('#sh').textContent='Choose 5 owned characters, then return to Seasonal Events and press Fight Boss.';return}
   const boss=byN(e.bossName||e.bossId)||SEASON_BOSSES[e.bossName||e.bossId];if(!boss){alert('The event boss is not in this version of the character roster.');return}
   // Reserve the account's single attempt before opening combat, so double-clicks or leaving/re-entering cannot grant another try.
@@ -3271,15 +3274,15 @@ function guiUI(){const u=cur,g=q('#gcm'),act=q('#gact');if(!g||!act)return _gui.
  let mv='';
  u.mv.forEach((m,i)=>{const ok=can&&m.c<=u.ch&&(!m.rq||units.some(o=>o.side!==u.side&&!o.dead&&o.st[m.rq]))&&!(u.st.fear&&m.t==='ae');
   const why=can&&!ok?moveWhy(u,m):'',sh=why&&m.c<=u.ch?why:'';descK.push(mdesc(m,why));
-  mv+=`<button class="mv${pend===m?' sel':''}" data-i="${i}" ${ok?'':'disabled'}><span class=mn>${esc(m.n)}</span>${sh?`<span class=why>${esc(sh)}</span>`:''}<span class=cost>${costPips(m.c,can?u.ch:null)}</span><span class=mx>${esc(m.x)}</span></button>`});
- if(ultOK(u)&&canAct(u)){const U=ULTS[u.n];descK.push(mdesc({t:U.t,x:U.x},'','ULTIMATE: '+U.n));
+  mv+=`<button class="mv${pend===m?' sel':''}" data-i="${i===4&&AUTO_ULTS[u.n]?5:i}" ${ok?'':'disabled'}><span class=mn>${esc(m.n)}</span>${sh?`<span class=why>${esc(sh)}</span>`:''}<span class=cost>${costPips(m.c,can?u.ch:null)}</span><span class=mx>${esc(m.x)}</span></button>`});
+ if(ultOK(u)&&canAct(u)){const U=ULTS[u.n]||AUTO_ULTS[u.n];descK.push(mdesc({t:U.t,x:U.x},'','ULTIMATE: '+U.n));
   mv+=`<button class="mv ult${pend&&pend.ult?' sel':''}" data-i="4" ${can?'':'disabled'}><span class=mn>${IC('ult')} Ultimate: ${esc(U.n)}</span><span class=cost>${IC('pipu')}</span><span class=mx>${esc(U.x)}</span></button>`}
  if(pend&&pend.ult&&pend.t==='echo'&&ultSt.v&&!ultSt.cm){const v=ultSt.v;mv+=`<div class=emh>${IC('cursor')}Choose ${esc(v.n)}’s move</div>`+v.mv.map((m2,j)=>{descK.push(mdesc(m2,m2.c>v.ch?'Needs '+m2.c+' Charge':''));
    return `<button class="mv em" data-j="${j}" ${m2.c<=v.ch?'':'disabled'}><span class=mn>${esc(m2.n)}</span><span class=cost>${costPips(m2.c,v.ch)}</span><span class=mx>${esc(m2.x)}</span></button>`}).join('')}
  // default text of the description strip
  if(pend&&phase==='plan'){const e=pend.ult&&pend.t==='echo';
   const TL=cursorUnits(),tb=TL.map(x=>`<button type=button class="tgb ${x.side===side0()?'al':'en'}" data-k="${units.indexOf(x)}" title="${esc(x.n)} ${x.hp}/${x.max}">${esc(x.n)}${hpBar(x)}</button>`).join('');
-  descDef=`${IC('hand-e',1)}<span class=tgt>${e?(!ultSt.v?'<b>Control</b>':ultSt.cm?`<b>${esc(ultSt.cm.n)}</b>`:`Choose the move <b>${esc(ultSt.v.n)}</b> will use.`):`<b>${esc(pend.ult?ULTS[u.n].n:pend.n)}</b>${tb?'':' - choose '+(pend.t==='ally'?'an ally':'an enemy')+'.'}`}</span>${tb?`<span class=tgl>${tb}</span>`:''}`}
+  descDef=`${IC('hand-e',1)}<span class=tgt>${e?(!ultSt.v?'<b>Control</b>':ultSt.cm?`<b>${esc(ultSt.cm.n)}</b>`:`Choose the move <b>${esc(ultSt.v.n)}</b> will use.`):`<b>${esc(pend.ult?(ULTS[u.n]||AUTO_ULTS[u.n]).n:pend.n)}</b>${tb?'':' - choose '+(pend.t==='ally'?'an ally':'an enemy')+'.'}`}</span>${tb?`<span class=tgl>${tb}</span>`:''}`}
  else if(can)descDef=`${IC('cursor')}<span>Choose a move for <b>${esc(u.n)}</b>.</span>`;
  else if(phase==='resolve')descDef=`${IC('swords')}<span><b>${esc(u.n)}</b> is acting…</span>`;
  else descDef=`<span class=mut>${esc(u.r)} - ${u.side===side0()?'your team':'enemy'}</span>`;
@@ -4680,7 +4683,7 @@ function wshS(a,need){const n=a.length;if(need===0){for(let k=0;k<n;k++)R();retu
  while(p.length){let s=p[0].fr?1.2:1;for(let k=1;k<p.length;k++)s+=p[k].fr?1.2:1;let q=R()*s,i=0;while(i<p.length-1&&(q-=(p[i].fr?1.2:1))>=0)i++;r.push(p.splice(i,1)[0]);
   if(need&&r.length>=need){for(let k=p.length;k>0;k--)R();break}}return r}
 function shS(a,need){if(!need){for(let i=a.length-1;i>0;i--)R();return null}const r=a.slice();for(let i=r.length-1;i>0;i--){const j=Math.floor(R()*(i+1));const x=r[i];r[i]=r[j];r[j]=x}return r}
-const ultOKs=u=>!!(ULTS[u.n]&&!u.ulted&&!u.dead&&!u.st.domain&&(ULT_ANY||aliveS(u.side).length===1));
+const ultOKs=u=>!!((ULTS[u.n]||AUTO_ULTS[u.n])&&!u.ulted&&!u.dead&&!u.st.domain&&(ULT_ANY||aliveS(u.side).filter(x=>!x.soldier&&!x.tungClone).length===1));
 const furyS=u=>{if(pnS(u,'Azrath')&&!u.dead)u.fury=Math.min(3,(u.fury||0)+1)};
 function sCheck(){let a=false,b=false;for(const u of S.u)if(!u.dead){if(u.side===0)a=true;else b=true}if(a&&b)return false;S.over=true;return true}
 function sDmg(t,d){if(t&&TGP(t.n)&&d>0)d=Math.round(d*.75);
@@ -5317,7 +5320,7 @@ if(TEST){
  ME={u:'tester',key:'tester',uid:null,email:'',role:'admin',test:1,stats:blank(),coins:999,rolls:99,owned:Object.fromEntries(ROSTER.map(d=>[d.n,1]))};
  setWho();
  if(q.has('charge')){const n=+q.get('charge')||5,b=beginRound;beginRound=function(){if(round===0)units.forEach(u=>u.ch=n>5?n:n-1);return b.apply(this,arguments)}}
- if(q.has('ult')){ultOK=u=>!!(ULTS[u.n]&&!u.ulted&&!u.dead&&!u.st.domain)}
+ if(q.has('ult')){ultOK=u=>!!((ULTS[u.n]||AUTO_ULTS[u.n])&&!u.ulted&&!u.dead&&!u.st.domain&&lastAllyStanding(u))}
 }
 
 
@@ -5420,11 +5423,11 @@ function atkEnd(s){if(!s||!s.soldier||!s._open)return;s._open=0;
  k.ch=Math.min(cp,k.ch+1);pop(k,'+1 \u25c6','#e8b84a');log(`<b>${k.n}</b>: Royal Authority grants 1 Charge`);render()}
 on('moveStart',(u,m)=>{if(u&&u.soldier&&m&&m.n==='Attack')atkBegin(u)});
 on('moveEnd',(u,m)=>{if(u&&u.soldier&&m&&m.n==='Attack')atkEnd(u)});
-// ---- Playable King: The Fallen King's Reckoning (automatic ultimate) ----
+// ---- Playable King: The Fallen King's Reckoning (manual ultimate) ----
 Object.assign(TH,{[PK]:['#e8b84a','#12040a',(c,t,w,h)=>{for(let i=0;i<9;i++){const p=pr(t,.2+i*.14,1+i*.14);if(!p)continue;const x=w*(.08+.1*i),bh=h*.38*p;c.fillStyle='rgba(181,48,47,.9)';c.fillRect(x-7,h*.92-bh,14,bh);c.fillStyle='#e8b84a';c.fillRect(x-1,h*.92-bh-h*.12,2,h*.12)}
  gw(c,w/2,h*.5,h*.5*pr(t,.4,2),'#e8b84a',.3);for(let k=0;k<3;k++){const p=pr(t,1.8+k*.5,3.4+k*.5);rn(c,w/2,h*.55,p*w*.5,'#ffd27a',8*(1-p),1-p)}
  if(t>1.4)nb(c,'\u265b',w/2,h*.4,h*.45,'#ffe9b0',.7*pr(t,1.4,2.2))}]});
-AUTO_ULTS[PK]={n:"The Fallen King's Reckoning",t:'self',x:'Activates automatically when the Forgotten King is the last living character on his team (Royal Soldiers do not count). Costs no Charge. Summons 3 Royal Soldiers (up to the '+PK_SOLDIER_CAP+' soldier limit), then every living Royal Soldier immediately attacks a random living enemy for 12 damage. All surviving Royal Soldiers take 50% less damage for one round. New soldiers act in normal turn order from the next round. Once per battle.',
+AUTO_ULTS[PK]={n:"The Fallen King's Reckoning",t:'self',x:'Can be activated with the Ultimate button when the Forgotten King is the last living regular teammate (Royal Soldiers do not count). Costs no Charge. Summons 3 Royal Soldiers (up to the '+PK_SOLDIER_CAP+' soldier limit), then every living Royal Soldier immediately attacks a random living enemy for 12 damage. All surviving Royal Soldiers take 50% less damage for one round. New soldiers act in normal turn order from the next round. Once per battle.',
  run:async u=>{if(!u||u.dead||u._reck)return;u._reck=1;
   const n=Math.max(0,Math.min(3,PK_SOLDIER_CAP-living(u).length));
   for(let i=0;i<n;i++){spawnSoldier(u);render();await sleep(240)}
@@ -5484,7 +5487,7 @@ const cleanup=()=>{try{if(!units)return;for(const s of units.filter(x=>x.soldier
 on('screen',n=>{if(n!=='battle')cleanup()});
 })();
 
-/* ===== The Standard-Bearer: The Last Standard  |  Tung Guy: TUNG TUNG TUNG SAHUR (automatic ultimates) ===== */
+/* ===== The Standard-Bearer: The Last Standard | Tung Guy: TUNG TUNG TUNG SAHUR (manual ultimates) ===== */
 (()=>{
 const SBN='The Standard-Bearer',TGN='Tung Guy';
 Object.assign(TH,{
@@ -5495,15 +5498,9 @@ Object.assign(TH,{
  for(let k=0;k<3;k++){const p=pr(t,1.8+k*.6,3.4+k*.6);rn(c,w*(.3+.2*k),h*.55,p*w*.22,'#ffd08a',8*(1-p),1-p)}
  for(let k=0;k<3;k++)if(t>1.2+k*.9)nb(c,'T',w*(.3+.2*k),h*.38,h*.42,'#ffe3b0',pr(t,1.2+k*.9,2+k*.9))}]});
 const living=side=>units.filter(x=>x.side===side&&!x.dead);
-// same conditions as the manual ultimate rules (ultOK): last living character, not yet used, not dead, no Domain. Summoned Tung clones never qualify.
-const autoReady=u=>!!(u&&AUTO_ULTS[u.n]&&!u.ulted&&!u.dead&&!u.tungClone&&!u.st.domain&&living(u.side).filter(x=>!x.soldier).length===1);
-let autoBusy=false;
-async function autoUlts(){if(autoBusy||over||!Array.isArray(units))return;autoBusy=true;
- try{for(const u of units.slice()){if(over)break;if(!autoReady(u))continue;const d=AUTO_ULTS[u.n];u.ulted=true;log(`<b>${u.n}</b> unleashes ${d.n}!`);await cutscene(u);if(u.dead)continue;await d.run(u);render();await sleep(500)}}
- finally{autoBusy=false}}
-on('battleInit',()=>{autoBusy=false;DOWN=null;NBF=0});
-const _finishSlot=finishSlot;finishSlot=async function(u){await _finishSlot.apply(this,arguments);await autoUlts()};
-const _fxRoundEnd=fxRoundEnd;fxRoundEnd=async function(){await _fxRoundEnd.apply(this,arguments);await autoUlts()};
+// These ultimates are manually activated with the Ultimate button. They are only offered when the owner is the last living regular teammate.
+on('battleInit',()=>{DOWN=null;NBF=0});
+
 // ---- Standard-Bearer: The Last Standard ----
 function reviveUnit(t){
  t.dead=false;t.hp=1;t.st={};t.wasHit=false;t.ch=Math.min(capOf(t),(t.ch||0)+5);if(t.wisps)t.wisps=[];
@@ -5512,10 +5509,10 @@ function reviveUnit(t){
  try{home(t)}catch(x){}try{setF(t,'idle')}catch(x){}
  pop(t,'REVIVED','#ffd23f');try{emit('heal',t,1)}catch(x){}
  setTimeout(()=>{if(!t.dead&&t.el)t.el.style.display=''},1700)}   // beats vanish()'s delayed hide when revived within 1.6s of dying
-AUTO_ULTS[SBN]={n:'The Last Standard',t:'self',x:'Activates automatically when the Standard-Bearer is the last living character on his team. Costs no Charge. Every defeated ally returns at 1 HP with 5 Charge (never above their Charge cap) and acts in normal turn order and speed, with no bonus turn and no invulnerability. Once per battle.',
+AUTO_ULTS[SBN]={n:'The Last Standard',t:'self',x:'Can be activated with the Ultimate button when the Standard-Bearer is the last living teammate. Costs no Charge. Every defeated ally returns at 1 HP with 5 Charge (never above their Charge cap) and acts in normal turn order and speed, with no bonus turn and no invulnerability. Once per battle.',
  run:async u=>{const fallen=units.filter(x=>x.side===u.side&&x.dead&&!x.soldier&&!x.tungClone);for(const t of fallen){reviveUnit(t);await sleep(220)}render()}};
 // ---- Tung Guy: TUNG TUNG TUNG SAHUR ----
-AUTO_ULTS[TGN]={n:'TUNG TUNG TUNG SAHUR',t:'self',x:'Activates automatically when Tung Guy is the last living character on his team. Costs no Charge. Two more Tung Guys join the battle (three in total), identical to the original and following normal turn order. From then on, every Tung flashes its Triple T form when it attacks (visual only). Once per battle.',
+AUTO_ULTS[TGN]={n:'TUNG TUNG TUNG SAHUR',t:'self',x:'Can be activated with the Ultimate button when Tung Guy is the last living teammate. Costs no Charge. Two more Tung Guys join the battle (three in total), identical to the original and following normal turn order. From then on, every Tung flashes its Triple T form when it attacks (visual only). Once per battle.',
  run:async u=>{const d=byN(TGN);if(!d)return;
   const spots=units.filter(x=>x.side===u.side&&x.dead&&x.el).map(x=>[x.el.style.left,x.el.style.top]);
   const ox=parseFloat(u.el.style.left)||50,oy=parseFloat(u.el.style.top)||50,A=$('#arena');
