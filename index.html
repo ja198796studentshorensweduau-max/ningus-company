@@ -5753,4 +5753,13 @@ on('screen',()=>setTimeout(updRec,50));
 window.NC_TEST={REC,replay,boom,plant,shatter,askFor};
 }catch(e){console.error('new characters failed to load',e)}})();
 
+
+/* ===== Seasonal boss: every attack deals 4x damage ===== */
+(()=>{try{
+const isBoss=u=>!!u&&typeof seasonalBattle!=='undefined'&&!!seasonalBattle&&u.side===1&&!u.soldier&&u.n===seasonalBattle.bossName;
+const _db=dmgBase;
+dmgBase=function(a,t,m,extra){let [b,x]=_db.call(this,a,t,m,extra);if(isBoss(a))x*=4;return [b,x]};
+const _in=init;
+init=function(){const r=_in.apply(this,arguments);for(const u of units)if(isBoss(u))u.nocap=1;try{render()}catch(e){}return r};
+}catch(e){console.error('boss 4x failed to load',e)}})();
 </script></body></html>
