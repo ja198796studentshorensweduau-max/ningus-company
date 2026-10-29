@@ -1254,7 +1254,7 @@ function unlockPanel(all){const keep=ulCur&&ulCur.id;ulAccts=[...all].sort((a,b)
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',w);else w()})();
 async function purgeLobbies(){if(!DB){$('#admmsg').textContent='No database connection.';return}const s=await once(DB.collection('lobbies'));let n=0;for(const d of s.docs){await DB.doc('lobbies/'+d.id).delete().catch(()=>{});n++}$('#admmsg').textContent='Removed '+n+' lobbies'}
 
-const GACHA=['Aegis','Fortuna','Royal Giant','The Locust','Chrona','Ruin','Mirage','Cirrus','Shinkai','Ritualis','Azrath','Elysia','Glacien','Riven','Belladonna','The Standard-Bearer','Forgotten King'];
+const GACHA=['Aegis','Fortuna','Royal Giant','The Locust','Chrona','Ruin','Mirage','Cirrus','Shinkai','Ritualis','Azrath','Elysia','Glacien','Riven','Belladonna','The Standard-Bearer'];
 const GCOL={Aegis:'#5aa0ff',Fortuna:'#ffd23f','Royal Giant':'#ffb347','The Locust':'#ff4a4a',Chrona:'#6ab0ff',Ruin:'#ff3b2a',Mirage:'#c58bff','Tung Guy':'#8c9aa6',Cirrus:'#6fc3ff',Shinkai:'#ffd58a',Ritualis:'#ff5c7a',Azrath:'#ff704d',Elysia:'#fff2a8',Glacien:'#9fe3ff',Riven:'#c9a0ff',Belladonna:'#e0508a','The Standard-Bearer':'#e8473f','Forgotten King':'#a01830'};
 const ADM_ONLY=['Gojo','Buff Doge','Sans','Boss Tung Guy'];
 const AUTO_ULTS={}; // ultimates that fire automatically when their owner is the last living character (see Standard-Bearer / Tung Guy hooks)
