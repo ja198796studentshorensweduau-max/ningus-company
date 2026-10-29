@@ -1258,9 +1258,10 @@ const GACHA=['Aegis','Fortuna','Royal Giant','The Locust','Chrona','Ruin','Mirag
 const GCOL={Aegis:'#5aa0ff',Fortuna:'#ffd23f','Royal Giant':'#ffb347','The Locust':'#ff4a4a',Chrona:'#6ab0ff',Ruin:'#ff3b2a',Mirage:'#c58bff','Tung Guy':'#8c9aa6',Cirrus:'#6fc3ff',Shinkai:'#ffd58a',Ritualis:'#ff5c7a',Azrath:'#ff704d',Elysia:'#fff2a8',Glacien:'#9fe3ff',Riven:'#c9a0ff',Belladonna:'#e0508a','The Standard-Bearer':'#e8473f','Forgotten King':'#a01830'};
 const ADM_ONLY=['Gojo','Buff Doge','Sans','Boss Tung Guy'];
 const AUTO_ULTS={}; // ultimates that fire automatically when their owner is the last living character (see Standard-Bearer / Tung Guy hooks)
-// Limited characters: never in the gacha, only obtainable as event rewards (or granted by an admin)
-const LIMITED=['Tung Guy'];
-const UNLOCKABLE=[...GACHA,...LIMITED,...ADM_ONLY.filter(n=>n!=='Boss Tung Guy')];
+// Limited characters: never in the gacha and not unlocked by default. Forgotten King is event-reward-only; Tung Guy may also be granted by admins.
+const LIMITED=['Tung Guy','Forgotten King'];
+const EVENT_REWARD_ONLY=['Forgotten King'];
+const UNLOCKABLE=[...GACHA,...LIMITED.filter(n=>!EVENT_REWARD_ONLY.includes(n)),...ADM_ONLY.filter(n=>n!=='Boss Tung Guy')];
 // Seasonal-only bosses: selectable ONLY in the event manager's boss dropdown. Deliberately NOT in ROSTER, so character select, gacha, collections and rosters never see them.
 const SEASON_BOSSES={};
 const visibleRoster=()=>ROSTER.filter(d=>{const got=!!(ME&&ME.owned&&ME.owned[d.n]);if(d.n==='Boss Tung Guy')return false;if(ADM_ONLY.includes(d.n)||LIMITED.includes(d.n))return got||!!(ME&&ME.role==='admin');return true});
