@@ -117,14 +117,11 @@ function load() {
   fetchFirst(driveUrls(id), 0)
     .then(function (html) {
       if (!html.trim()) throw new Error('The file on Google Drive is empty.');
-      try { localStorage.setItem(CACHE_KEY, html); } catch (e) {}
       show(html);
     })
     .catch(function (e) {
-      var cached = null;
-      try { cached = localStorage.getItem(CACHE_KEY); } catch (x) {}
-      if (cached) show(cached);
-      else status('Could not load from Google Drive: ' + e.message, true, true);
+      console.warn('Drive load failed:', e.message);
+      status('Could not load from Google Drive: ' + e.message, true, true);
     });
 }
 
